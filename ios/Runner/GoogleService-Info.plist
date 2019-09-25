@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>893538327540-2hmmahoneq033djcgnhl3i7ituj6jqb9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.893538327540-2hmmahoneq033djcgnhl3i7ituj6jqb9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBY8xAp2Wf04BsjNB1RC2YtGfmHHboDUi4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>893538327540</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.oakam.example.oakam</string>
+	<key>PROJECT_ID</key>
+	<string>oakam-itstep1511</string>
+	<key>STORAGE_BUCKET</key>
+	<string>oakam-itstep1511.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:893538327540:ios:f07bd3f1345a97b0beb7a1</string>
+	<key>DATABASE_URL</key>
+	<string>https://oakam-itstep1511.firebaseio.com</string>
+</dict>
+</plist>

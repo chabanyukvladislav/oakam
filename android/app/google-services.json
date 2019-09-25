@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "893538327540",
+    "firebase_url": "https://oakam-itstep1511.firebaseio.com",
+    "project_id": "oakam-itstep1511",
+    "storage_bucket": "oakam-itstep1511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893538327540:android:1577d1d193974fc4beb7a1",
+        "android_client_info": {
+          "package_name": "com.oakam.example.oakam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893538327540-uieqm8e4u30v6o4d28imnktrun7sac7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD36_BwMs1NoiMV8iMz8_yhKZIyEA_kn5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893538327540-uieqm8e4u30v6o4d28imnktrun7sac7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

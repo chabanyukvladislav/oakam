@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'walkthrough/walkthroughPage.dart';
+import 'welcomePage.dart';
 
 class OakamApp extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class OakamApp extends StatelessWidget {
     _setSystemParams();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WalkthroughPage(),
+      home: WelcomePage(),
     );
   }
 
