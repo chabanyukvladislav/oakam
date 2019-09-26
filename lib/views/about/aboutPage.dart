@@ -6,6 +6,8 @@ import '../appBar.dart' as custom;
 import 'aboutBody.dart';
 
 class AboutPage extends StatelessWidget{
+  static const String name = "Discovery";
+
   @override
   Widget build(BuildContext context) {
     return Page(

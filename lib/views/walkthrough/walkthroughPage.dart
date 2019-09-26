@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../managers/statisticManager.dart';
+import '../../managers/iStatisticManager.dart';
 import '../about/aboutPage.dart';
 import '../navigateBottomBar.dart';
 import 'walkthroughBody.dart';
@@ -7,6 +9,9 @@ import '../page.dart';
 import '../appBar.dart' as custom;
 
 class WalkthroughPage extends StatelessWidget{
+  static const String name = "USP1";
+  final IStatisticManager _manager = StatisticManager.getManager();
+  
   @override
   Widget build(BuildContext context) {
     return Page(
@@ -22,7 +27,7 @@ class WalkthroughPage extends StatelessWidget{
               ),
             ),
             onPressed: () {
-
+              
             },
           )
         ],
@@ -35,12 +40,16 @@ class WalkthroughPage extends StatelessWidget{
         ),
         fontColor: Colors.white,
         backgroundColor: Colors.lightBlue,
-        onButtonPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AboutPage()));
-        },
+        onButtonPressed: () => _navigateTo(context, AboutPage()),
       )
     );
+  }
+  
+  void _navigateTo(BuildContext context, Widget screen) async {
+    _manager.screenNavigationTo(AboutPage.name);
+    await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AboutPage()));
+    _manager.screenNavigationBack();
   }
 }

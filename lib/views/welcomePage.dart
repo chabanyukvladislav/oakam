@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../managers/statisticManager.dart';
+import '../managers/iStatisticManager.dart';
 import '../my_flutter_app_icons.dart';
 import 'walkthrough/walkthroughPage.dart';
 
@@ -9,6 +11,8 @@ class WelcomePage extends StatefulWidget{
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  final IStatisticManager _manager = StatisticManager.getManager();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -60,7 +64,9 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void onTapped() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => WalkthroughPage()));
+    _manager.screenOpened(WalkthroughPage.name);
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WalkthroughPage()));
   }
 }

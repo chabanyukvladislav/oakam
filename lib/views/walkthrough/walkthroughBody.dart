@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../managers/statisticManager.dart';
+import '../../managers/iStatisticManager.dart';
 import 'walkthroughSlideScreen.dart';
 import 'walkthroughSlideVideoScreen.dart';
 
@@ -9,6 +11,7 @@ class WalkthroughBody extends StatefulWidget{
 }
 
 class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProviderStateMixin {
+  final IStatisticManager _manager = StatisticManager.getManager();
   double _lastOffset;
   double _screenWidth;
   double _screenOffset;
@@ -80,6 +83,12 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
     );
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _onHorizontalDragStarted(DragStartDetails details) {
     if (_controller.status == AnimationStatus.dismissed)
       _lastOffset = _screenOffset;
@@ -118,6 +127,8 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
       ..addListener(_slideAnimationListener)
       ..addStatusListener(_slideAnimationStatusListener);
     _controller.forward();
+    if(_lastOffset != endValue)
+      _logStatistics(endValue);
   }
 
   void _slideAnimationListener() {
@@ -134,9 +145,13 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
     }
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void _logStatistics(double newOffset) {
+    _manager.screenClosed();
+    if (-newOffset < _screenWidth)
+      _manager.screenOpened("USP1");
+    else if (-newOffset < _screenWidth * 2)
+      _manager.screenOpened("USP2");
+    else if (-newOffset <= _screenWidth * 2)
+      _manager.screenOpened("USP3");
   }
 }
