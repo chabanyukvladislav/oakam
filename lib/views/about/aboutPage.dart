@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:oakam/myFlutterApp.dart';
 
 import '../navigateBottomBar.dart';
 import '../page.dart';
 import '../appBar.dart' as custom;
 import 'aboutBody.dart';
 
-class AboutPage extends StatelessWidget{
+class AboutPage extends StatelessWidget {
   static const String name = "Discovery";
 
   @override
@@ -13,17 +14,19 @@ class AboutPage extends StatelessWidget{
     return Page(
         appBar: custom.AppBar(
           isBackButton: true,
-          backButtonColor: Colors.lightBlue,
+          backButtonColor: MyFlutterApp.mainColor,
           backButtonIcon: Icons.chevron_left,
-          backButtonIconSize: 50,
+          backButtonIconSize: 40,
           buttons: <MaterialButton>[
             FlatButton(
               color: Colors.transparent,
-              textColor: Colors.lightBlue,
+              textColor: MyFlutterApp.mainColor,
               child: Text(
                 "Help",
                 style: TextStyle(
                   fontSize: 15,
+                  fontFamily: "SF Pro Display Semibold",
+                  letterSpacing: 0.44
                 ),
               ),
               onPressed: () {
@@ -34,11 +37,13 @@ class AboutPage extends StatelessWidget{
         ),
         body: AboutBody(),
         bottomNavigationBar: NavigateBottomBar(
-            text: "Let`s get started",
+            text: "LET`S GET STARTED",
             fontColor: Colors.white,
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: MyFlutterApp.mainColor,
             textStyle: TextStyle(
-                fontSize: 20
+                fontSize: 15,
+                fontFamily: "SF Pro Display Semibold",
+                letterSpacing: 0.3
             ),
             onButtonPressed: () {
 

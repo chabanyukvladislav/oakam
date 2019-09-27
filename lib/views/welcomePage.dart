@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../managers/statisticManager.dart';
 import '../managers/iStatisticManager.dart';
-import '../my_flutter_app_icons.dart';
+import '../myFlutterApp.dart';
 import 'walkthrough/walkthroughPage.dart';
 
 class WelcomePage extends StatefulWidget{
@@ -20,14 +20,14 @@ class _WelcomePageState extends State<WelcomePage> {
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: <Color>[
-                      Colors.lightGreen,
-                      Colors.lightBlue
+                      Color.fromRGBO(170, 230, 40, 1),
+                      Color.fromRGBO(0, 210, 180, 1)
                     ],
                     stops: <double>[
                       0.1,
                       0.9
                     ],
-                    begin: Alignment.topLeft,
+                    begin: Alignment.topCenter,
                     end: Alignment.bottomRight
                 )
             ),

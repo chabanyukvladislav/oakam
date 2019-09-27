@@ -1,49 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:oakam/myFlutterApp.dart';
 
-import '../slideScreen/slideScreen.dart';
+import 'walkthroughSlideScreen.dart';
 
-class WalkthroughSlideVideoScreen extends SlideScreen {
-  final NetworkImage image;
+class WalkthroughSlideVideoScreen extends WalkthroughSlideScreen {
+  final String imagePath;
   final String title;
   final String text;
   final int screenIndex;
 
-  WalkthroughSlideVideoScreen({this.image, this.title, this.text, this.screenIndex}) : super(
-    title: title,
-    text: text,
-    titleStyle: TextStyle(
-        fontSize: 25
-    ),
-    textStyle: TextStyle(
-        fontSize: 15
-    ),
-    content: Column(
-      children: <Widget>[
-        Expanded(
-          child: FadeInImage.assetNetwork(
-              image: image.url,
-              placeholder: "assets/downloading.gif"
-          ),
-        ),
-        Container(
-            margin: EdgeInsets.all(10),
-            child: FloatingActionButton(
-                backgroundColor: Colors.lightBlue,
-                onPressed: () {
+  WalkthroughSlideVideoScreen(
+      {this.imagePath, this.title, this.text, this.screenIndex}) : super(
+      title: title,
+      text: text,
+      screenIndex: screenIndex,
+      image: SvgPicture.asset(imagePath),
+      content: Container(
+          width: 85,
+          height: 85,
+          margin: EdgeInsets.all(10),
+          child: FloatingActionButton(
+              backgroundColor: MyFlutterApp.mainColor,
+              onPressed: () {
 
-                },
-                child: Icon(
+              },
+              child: Icon(
                   Icons.play_arrow,
                   size: 50,
-                  color: Colors.white,
-                )
-            )
-        )
-      ],
-    ),
-    screenCount: 3,
-    screenIndex: screenIndex,
-    selectedDotsColor: Colors.lightBlue,
-    unselectedDotsColor: Colors.grey,
+                  color: Colors.white
+              )
+          )
+      )
   );
 }

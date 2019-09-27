@@ -53,13 +53,13 @@ class StatisticManager implements IStatisticManager {
   void screenClosed() async {
     _userManager.getUserIdChangedEvent().unsubscribe(_onUserIdChanged);
     _stopwatch.stop();
-    int minutes = _stopwatch.elapsed.inMinutes;
-    int seconds = _stopwatch.elapsed.inSeconds;
+    String timestamp = _getTimestampFromMilliseconds(
+        _stopwatch.elapsed.inMilliseconds);
     await _databaseReference.collection(_collectionName)
         .document(_documentName).collection(_userId)
         .document(DateTime.now().toString()).setData({
       "screenName": _screenName,
-      "timestamp": "$minutes` $seconds``",
+      "timestamp": timestamp,
     });
     _stopwatch.reset();
   }
@@ -68,12 +68,23 @@ class StatisticManager implements IStatisticManager {
     String userId = _userManager.getUserId();
     var documents = await _databaseReference.collection(_collectionName)
         .document(_documentName).collection(_userId).getDocuments();
-    for(int i = 0; i < documents.documents.length; ++i) {
+    for (int i = 0; i < documents.documents.length; ++i) {
       DocumentSnapshot document = documents.documents[i];
       await _databaseReference.collection(_collectionName)
           .document(_documentName).collection(userId).document(
           document.documentID).setData(document.data);
     }
     _userId = userId;
+  }
+
+  String _getTimestampFromMilliseconds(int inMilliseconds) {
+    int milliseconds = inMilliseconds % 1000;
+    int inSeconds = (inMilliseconds / 1000).truncate();
+    int seconds = inSeconds % 60;
+    int inMinutes = (inSeconds / 60).truncate();
+    int minutes = inMinutes % 60;
+    int inHours = (inMinutes / 60).truncate();
+    int hours = inHours % 60;
+    return "$hours:$minutes:$seconds.$milliseconds";
   }
 }

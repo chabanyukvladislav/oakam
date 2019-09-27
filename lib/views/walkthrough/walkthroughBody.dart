@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:oakam/delegate.dart';
+import 'package:oakam/iDelegate.dart';
 
 import '../../managers/statisticManager.dart';
 import '../../managers/iStatisticManager.dart';
-import 'walkthroughSlideScreen.dart';
+import 'walkthroughSlideImageScreen.dart';
 import 'walkthroughSlideVideoScreen.dart';
 
 class WalkthroughBody extends StatefulWidget{
+  final Delegate _lastScreenOpened = Delegate();
+  final Delegate _lastScreenClosed = Delegate();
+
   @override
   State<WalkthroughBody> createState() => _WalkthroughBodyState();
+
+  IDelegate lastScreenOpened() => _lastScreenOpened;
+  IDelegate lastScreenClosed() => _lastScreenClosed;
 }
 
 class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProviderStateMixin {
@@ -43,34 +51,28 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
                 children: <Widget>[
                   Transform.translate(
                       offset: Offset(_screenOffset, 0),
-                      child: WalkthroughSlideScreen(
-                          title: "First screen",
-                          text: "asg dfh a First screen First screen First screen First screen First screen First screen screen sdg safg afdjs",
-                          image: NetworkImage(
-                              "https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LGMeL91dCOQltZDcGky%2F-LSNIoWLCviCKdOdQInG%2F-LSNJbond2eu6KoNFUvk%2Fcat.png?alt=media&token=c563c908-c678-479e-8e12-c44c3a182c95"
-                          ),
+                      child: WalkthroughSlideImageScreen(
+                          title: "NO LATE FEES",
+                          text: "We don't charge late fees for missed\npayments or if you settle early",
+                          imagePath: "assets/NoLateFees.svg",
                           screenIndex: 0
                       )
                   ),
                   Transform.translate(
                       offset: Offset(_screenWidth + _screenOffset, 0),
                       child: WalkthroughSlideVideoScreen(
-                        title: "Second screen",
-                        text: "Second screen Second screen Second screen Second screen Second screen Second screen sdg safg afdjs",
-                        image: NetworkImage(
-                            "https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LGMeL91dCOQltZDcGky%2F-LSNIoWLCviCKdOdQInG%2F-LSNJbond2eu6KoNFUvk%2Fcat.png?alt=media&token=c563c908-c678-479e-8e12-c44c3a182c95"
-                        ),
+                        title: "BUILD YOUR CREDIT",
+                        text: "Making repayments may improve\nyour credit score",
+                        imagePath: "assets/NoLateFees.svg",
                         screenIndex: 1,
                       )
                   ),
                   Transform.translate(
                       offset: Offset(_screenWidth * 2 + _screenOffset, 0),
-                      child: WalkthroughSlideScreen(
-                          title: "Third screen",
-                          text: "sd ghhggffd Third screen Third screen Third screen Third screen Third screen Third screen screen sdg safg afdjs",
-                          image: NetworkImage(
-                              "https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LGMeL91dCOQltZDcGky%2F-LSNIoWLCviCKdOdQInG%2F-LSNJbond2eu6KoNFUvk%2Fcat.png?alt=media&token=c563c908-c678-479e-8e12-c44c3a182c95"
-                          ),
+                      child: WalkthroughSlideImageScreen(
+                          title: "CASH WITHIN 10 MIN",
+                          text: "Your loan could be approved in\nas little as 10 minutes",
+                          imagePath: "assets/NoLateFees.svg",
                           screenIndex: 2
                       )
                   )
@@ -127,7 +129,7 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
       ..addListener(_slideAnimationListener)
       ..addStatusListener(_slideAnimationStatusListener);
     _controller.forward();
-    if(_lastOffset != endValue)
+    if (_lastOffset != endValue)
       _logStatistics(endValue);
   }
 
@@ -147,11 +149,17 @@ class _WalkthroughBodyState extends State<WalkthroughBody> with SingleTickerProv
 
   void _logStatistics(double newOffset) {
     _manager.screenClosed();
-    if (-newOffset < _screenWidth)
+    if (-newOffset < _screenWidth) {
       _manager.screenOpened("USP1");
-    else if (-newOffset < _screenWidth * 2)
+      widget._lastScreenClosed.raise();
+    }
+    else if (-newOffset < _screenWidth * 2) {
       _manager.screenOpened("USP2");
-    else if (-newOffset <= _screenWidth * 2)
+      widget._lastScreenClosed.raise();
+    }
+    else if (-newOffset <= _screenWidth * 2) {
       _manager.screenOpened("USP3");
+      widget._lastScreenOpened.raise();
+    }
   }
 }

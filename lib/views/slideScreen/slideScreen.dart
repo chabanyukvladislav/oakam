@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'screensDots.dart';
 
 class SlideScreen extends StatelessWidget {
+  final Widget image;
   final String title;
   final TextStyle titleStyle;
   final String text;
@@ -18,6 +19,7 @@ class SlideScreen extends StatelessWidget {
     this.text,
     this.textStyle = const TextStyle(),
     this.content,
+    this.image,
     this.screenCount,
     this.screenIndex,
     this.selectedDotsColor = Colors.black,
@@ -30,25 +32,41 @@ class SlideScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
-              child: content
+              flex: 3,
+              child: Container(
+                  child: image
+              )
           ),
-          Text(
-            title,
-            style: titleStyle,
+          Expanded(
+              flex: 2,
+              child: Container(
+                child: content,
+              )
           ),
-          Container(height: 10),
-          Text(
-              text,
-              textAlign: TextAlign.center,
-              style: textStyle
-          ),
-          Container(height: 10),
-          ScreenDots(
-            dotsCount: screenCount,
-            selectedIndex: screenIndex,
-            selectedColor: selectedDotsColor,
-            unselectedColor: unselectedDotsColor,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Container(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  title,
+                  style: titleStyle,
+                ),
+                Container(height: 15),
+                Text(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: textStyle
+                ),
+                Container(height: 20),
+                ScreenDots(
+                  dotsCount: screenCount,
+                  selectedIndex: screenIndex,
+                  selectedColor: selectedDotsColor,
+                  unselectedColor: unselectedDotsColor,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                )
+              ],
+            ),
           )
         ]
     );

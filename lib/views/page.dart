@@ -28,7 +28,7 @@ class Page extends StatelessWidget{
           child: body
         ),
         bottomNavigationBar: Container(
-          margin: EdgeInsets.fromLTRB(15, 0, 15, 15),
+          margin: EdgeInsets.fromLTRB(30, 0, 30, 30),
           child: bottomNavigationBar
         )
     );

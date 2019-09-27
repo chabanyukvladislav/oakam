@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:oakam/myFlutterApp.dart';
 
 import '../slideScreen/slideScreen.dart';
 
 class WalkthroughSlideScreen extends SlideScreen {
-  final NetworkImage image;
+  final Widget image;
   final String title;
   final String text;
   final int screenIndex;
+  final Widget content;
 
-  WalkthroughSlideScreen({this.image, this.title, this.text, this.screenIndex}) : super(
+  WalkthroughSlideScreen({this.image, this.title, this.text, this.screenIndex, this.content})
+      : super(
     title: title,
     text: text,
     titleStyle: TextStyle(
-        fontSize: 25
+        fontSize: 24,
+        fontFamily: "Proxima Nova Soft Bold",
+        color: MyFlutterApp.titleColor,
+        letterSpacing: 0.4
     ),
     textStyle: TextStyle(
-        fontSize: 15
+        fontSize: 17,
+        fontFamily: "SF Pro Display Regular",
+        color: MyFlutterApp.textColor,
+        letterSpacing: 0.5
     ),
-    content: FadeInImage.assetNetwork(
-        image: image.url,
-        placeholder: "assets/downloading.gif"
-    ),
+    image: image,
+    content: content,
     screenCount: 3,
     screenIndex: screenIndex,
-    selectedDotsColor: Colors.lightBlue,
-    unselectedDotsColor: Colors.grey,
+    selectedDotsColor: MyFlutterApp.mainColor,
+    unselectedDotsColor: MyFlutterApp.unselectedColor,
   );
 }
