@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'oakam.dart';
+import 'views/oakam.dart';
 
 void main() => runApp(OakamApp());
