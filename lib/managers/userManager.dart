@@ -1,6 +1,5 @@
-import 'package:oakam/Delegate.dart';
-import 'package:oakam/iDelegate.dart';
-
+import '../Delegate.dart';
+import '../iDelegate.dart';
 import 'iUserManager.dart';
 
 class UserManager implements IUserManager{
